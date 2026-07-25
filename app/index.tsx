@@ -1,46 +1,38 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
-
-import { colors } from "@/src/theme";
+import { StyleSheet, Text } from "react-native";
 
 import Logo from "@/assets/logo.svg";
+import { Container } from "@/src/components/Container";
+import { Screen } from "@/src/components/Screen";
+import { colors, spacing, typography } from "@/src/theme";
 
 export default function Index() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>
-        Numa POS
-      </Text>
+    <Screen>
+      <Container>
+        <Logo width={96} height={96} />
 
-      <Text style={styles.subtitle}>
-        Foundation ready
-      </Text>
+        <Text style={styles.title}>
+          Numa POS
+        </Text>
 
-      <Logo width={120} height={120} />
-    </View>
+        <Text style={styles.subtitle}>
+          Foundation ready
+        </Text>
+      </Container>
+    </Screen>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: colors.background,
-  },
-
   title: {
-    fontSize: 32,
-    fontWeight: "700",
+    ...typography.title,
     color: colors.primary,
+    marginTop: spacing.lg,
   },
 
   subtitle: {
-    marginTop: 8,
-    fontSize: 16,
+    ...typography.body,
     color: colors.secondary,
+    marginTop: spacing.sm,
   },
 });
