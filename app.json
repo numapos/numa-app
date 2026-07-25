@@ -6,9 +6,6 @@
     "orientation": "landscape",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "ios": {
-      "supportsTablet": true
-    },
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
