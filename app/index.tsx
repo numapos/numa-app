@@ -6,6 +6,8 @@ import {
 
 import { colors } from "@/src/theme";
 
+import Logo from "@/assets/logo.svg";
+
 export default function Index() {
   return (
     <View style={styles.container}>
@@ -16,6 +18,8 @@ export default function Index() {
       <Text style={styles.subtitle}>
         Foundation ready
       </Text>
+
+      <Logo width={120} height={120} />
     </View>
   );
 }
