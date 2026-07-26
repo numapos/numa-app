@@ -4,7 +4,7 @@ import { useState } from "react";
 import { NumaLogo } from "@/src/components/common/NumaLogo";
 import { colors } from "@/src/theme";
 
-const categories = [
+const menuItems = [
   "All",
   "Food",
   "Drinks",
@@ -12,12 +12,18 @@ const categories = [
   "Desserts",
 ];
 
-export function Sidebar() {
-  const [activeCategory, setActiveCategory] = useState("All");
+type Props = {
+  activeCategory: string;
+  onCategoryChange: (category: string) => void;
+};
 
+export function Sidebar({
+  activeCategory,
+  onCategoryChange,
+}: Props) {
   return (
     <View style={styles.container}>
-      <NumaLogo width={120} height={120} />
+      <NumaLogo width={64} height={64} />
 
       <View style={styles.userCard}>
         <Text style={styles.userName}>
@@ -35,26 +41,26 @@ export function Sidebar() {
         </Pressable>
       </View>
 
-      <View style={styles.categories}>
-        {categories.map((category) => {
-          const active = category === activeCategory;
+      <View style={styles.menu}>
+        {menuItems.map((item) => {
+          const active = item === activeCategory;
 
           return (
             <Pressable
-              key={category}
+              key={item}
+              onPress={() => onCategoryChange(item)}
               style={[
-                styles.category,
-                active && styles.activeCategory,
+                styles.menuItem,
+                active && styles.activeMenuItem,
               ]}
-              onPress={() => setActiveCategory(category)}
             >
               <Text
                 style={[
-                  styles.categoryText,
-                  active && styles.activeCategoryText,
+                  styles.menuText,
+                  active && styles.activeMenuText,
                 ]}
               >
-                {category}
+                {item}
               </Text>
             </Pressable>
           );
@@ -74,16 +80,16 @@ const styles = StyleSheet.create({
   container: {
     width: 220,
     padding: 20,
-    backgroundColor: "#FFF",
+    backgroundColor: colors.background,
     borderRightWidth: 1,
-    borderRightColor: "#ECECEC",
+    borderRightColor: colors.border,
   },
 
   userCard: {
     marginTop: 24,
     padding: 16,
     borderRadius: 16,
-    backgroundColor: "#F8F8FA",
+    backgroundColor: colors.surface,
   },
 
   userName: {
@@ -94,7 +100,7 @@ const styles = StyleSheet.create({
 
   userRole: {
     marginTop: 4,
-    color: colors.secondary,
+    color: colors.textSecondary,
   },
 
   logout: {
@@ -103,41 +109,41 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
 
-  categories: {
+  menu: {
     marginTop: 32,
     gap: 12,
   },
 
-  category: {
+  menuItem: {
     height: 52,
     justifyContent: "center",
     paddingHorizontal: 16,
     borderRadius: 12,
   },
 
-  activeCategory: {
+  activeMenuItem: {
     backgroundColor: colors.primary,
   },
 
-  categoryText: {
+  menuText: {
     fontSize: 17,
     fontWeight: "600",
     color: colors.text,
   },
 
-  activeCategoryText: {
-    color: "#FFF",
+  activeMenuText: {
+    color: "#FFFFFF",
   },
 
   settings: {
     marginTop: "auto",
-    alignItems: "center",
-    justifyContent: "center",
     height: 56,
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   settingsIcon: {
     fontSize: 28,
-    color: colors.secondary,
+    color: colors.textSecondary,
   },
 });

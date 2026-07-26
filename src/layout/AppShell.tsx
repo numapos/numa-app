@@ -7,13 +7,22 @@ import { colors } from "@/src/theme";
 
 type Props = {
   children: ReactNode;
+  activeCategory: string;
+  onCategoryChange: (category: string) => void;
 };
 
-export function AppShell({ children }: Props) {
+export function AppShell({
+  children,
+  activeCategory,
+  onCategoryChange,
+}: Props) {
   return (
     <Screen>
       <View style={styles.container}>
-        <Sidebar />
+        <Sidebar
+          activeCategory={activeCategory}
+          onCategoryChange={onCategoryChange}
+        />
 
         <View style={styles.content}>
           {children}
